@@ -13,13 +13,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
-    builder.WithOrigins("http://localhost:3000", "*").AllowAnyMethod().AllowAnyHeader();
+    builder.WithOrigins("http://localhost:4200", "*").AllowAnyMethod().AllowAnyHeader();
 }));
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy",
-        builder => builder.WithOrigins("http://localhost:3000") // Aquí debes colocar la URL de tu frontend
+        builder => builder.WithOrigins("http://localhost:4200") // Aquí debes colocar la URL de tu frontend
                           .AllowAnyMethod()
                           .AllowAnyHeader()
                           .AllowCredentials());
