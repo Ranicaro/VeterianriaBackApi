@@ -496,21 +496,29 @@ namespace VeterianriaBackApi.Controllers
             try
             {
                 tblMascotas tMascota = _context.tblMascotas.Where(x=> x.iIDMascota==mMascota.iIDMascota).FirstOrDefault();
-                tMascota.iIDUsuarioCreacion = mMascota.iIDUsuarioCreacion;
-                tMascota.dtFechaCreacion = DateTime.Now;
-                tMascota.bActivo = true;
+                if (tMascota == null)
+                {
+                    return "Error se encontro la mascota";
+                }
+                else
+                {
+                    tMascota.iIDUsuarioModificacion = mMascota.iIDUsuarioModificacion;
+                    tMascota.dtFechaModificacion = DateTime.Now;
+                    tMascota.bActivo = true;
 
-                tMascota.tNombreMascota = mMascota.tNombreMascota;
-                tMascota.tEspecie = mMascota.tEspecie;
-                tMascota.tRaza = mMascota.tRaza;
-                tMascota.dtFechaNacimiento = mMascota.dtFechaNacimiento;
-                tMascota.iIDDuenno = mMascota.iIDDuenno;
+                    tMascota.tNombreMascota = mMascota.tNombreMascota;
+                    tMascota.tEspecie = mMascota.tEspecie;
+                    tMascota.tRaza = mMascota.tRaza;
+                    tMascota.dtFechaNacimiento = mMascota.dtFechaNacimiento;
+                    tMascota.iIDDuenno = mMascota.iIDDuenno;
 
 
-                _context.Entry(tMascota).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
+                    _context.Entry(tMascota).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
 
-                return "Mascota " + tMascota.tNombreMascota + " editada correctamente";
+                    return "Mascota " + tMascota.tNombreMascota + " editada correctamente";
+                }
+               
             }
             catch (Exception ex)
             {
