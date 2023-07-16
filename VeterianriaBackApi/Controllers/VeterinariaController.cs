@@ -498,7 +498,7 @@ namespace VeterianriaBackApi.Controllers
                 tblMascotas tMascota = _context.tblMascotas.Where(x=> x.iIDMascota==mMascota.iIDMascota).FirstOrDefault();
                 if (tMascota == null)
                 {
-                    return "Error se encontro la mascota";
+                    return "Error NO se encontro la mascota";
                 }
                 else
                 {
